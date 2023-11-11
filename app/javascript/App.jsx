@@ -1,16 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import fetchData from './redux/api';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import Greeting from './components/greeting.jsx';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Greeting />,
+  },
+]);
 
 function App() {
-  const dispatch = useDispatch();
-  const { greeting } = useSelector((state) => state.greeting);
-
-  React.useEffect(() => {
-    dispatch(fetchData());
-  }, []);
-
-  return <h1>{greeting}</h1>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
