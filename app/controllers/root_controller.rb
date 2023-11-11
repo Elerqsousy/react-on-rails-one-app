@@ -1,6 +1,5 @@
 class RootController < ApplicationController
-  def index
-  end
+  def index; end
 
   def greetings
     @data = Greeting.all.sample.to_json
