@@ -1,17 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import fetchData from './redux/api';
 
 function App() {
-  const [data, setData] = React.useState('');
-  const fetchData = async () => {
-    const response = await fetch('http://localhost:3000/root/greetings')
-    const ApiData = await response.json(); 
-    setData(ApiData.greeting);
-  };
+  const dispatch = useDispatch();
+  const { greeting } = useSelector((state) => state.greeting);
+
   React.useEffect(() => {
-    fetchData();
+    dispatch(fetchData());
   }, []);
 
-  return <h1>{data}</h1>;
+  return <h1>{greeting}</h1>;
 }
 
 export default App;
